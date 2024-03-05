@@ -1,0 +1,42 @@
+package osgi_studentinformationpublisher;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class StudentInfoPublishImpl implements StudentInfoPublish {
+	
+	private Map<String, Student> studentMap;
+
+    public StudentInfoPublishImpl() {
+        studentMap = new HashMap<>();
+        
+    }
+	
+
+    @Override
+    public void addStudent(String name, String id, String department) {
+        Student student = new Student(name, id, department);
+        studentMap.put(id, student);
+    }
+
+    @Override
+    public void updateStudent(String id, String name, String department) {
+        if (studentMap.containsKey(id)) {
+            Student student = studentMap.get(id);
+            student.setName(name);
+            student.setDepartment(department);
+            studentMap.put(id, student);
+        }
+    }
+
+    @Override
+    public void deleteStudent(String id) {
+        studentMap.remove(id);
+    }
+
+    @Override
+    public Student getStudentById(String id) {
+        return studentMap.get(id);
+    }
+
+}

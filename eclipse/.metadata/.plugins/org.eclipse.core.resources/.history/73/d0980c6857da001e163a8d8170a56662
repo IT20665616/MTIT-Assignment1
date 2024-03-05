@@ -1,0 +1,103 @@
+package osgi_studentinformationconsumer;
+
+import java.util.Scanner;
+
+import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
+
+import osgi_studentinformationpublisher.Student;
+import osgi_studentinformationpublisher.StudentInfoPublish;
+
+public class StudentInterfaceImpl implements StudentInterface{
+	
+	private BundleContext bundleContext;
+    private ServiceTracker<StudentInfoPublish, StudentInfoPublish> studentInformationTracker;
+    
+    private Scanner scanner;
+
+    public StudentInterfaceImpl(BundleContext bundleContext) {
+        this.bundleContext = bundleContext;
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void start() {
+    	studentInformationTracker = new ServiceTracker<>(bundleContext, StudentInfoPublish.class, null);
+    	studentInformationTracker.open();
+    }
+
+    
+
+    private StudentInfoPublish getStudentService() {
+        return studentInformationTracker.getService();
+    }
+
+    @Override
+    public void displayStudentInfo(String id) {
+    	StudentInfoPublish studentInfo = getStudentService();
+        if (studentInfo != null) {
+            Student student = studentInfo.getStudentById(id);
+            if (student != null) {
+                System.out.println("Student Info:");
+                System.out.println("Name: " + student.getName());
+                System.out.println("ID: " + student.getId());
+                System.out.println("Department: " + student.getDepartment());
+            } else {
+                System.out.println("Student not found.");
+            }
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+    
+    public void addStudentFromConsole() {
+        System.out.println("Enter student name:");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter student ID:");
+        String id = scanner.nextLine();
+
+        System.out.println("Enter student department:");
+        String department = scanner.nextLine();
+
+        // Add the student using the provided information
+        addStudent(name, id, department);
+    }
+
+    @Override
+    public void addStudent(String name, String id, String department) {
+    	StudentInfoPublish studentInfo = getStudentService();
+        if (studentInfo != null) {
+            studentInfo.addStudent(name, id, department);
+            System.out.println("Student added successfully.");
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+
+    @Override
+    public void updateStudent(String id, String name, String department) {
+    	StudentInfoPublish studentInfo = getStudentService();
+        if (studentInfo != null) {
+            studentInfo.updateStudent(id, name, department);
+            System.out.println("Student updated successfully.");
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+
+    @Override
+    public void deleteStudent(String id) {
+    	StudentInfoPublish studentService = getStudentService();
+        if (studentService != null) {
+            studentService.deleteStudent(id);
+            System.out.println("Student deleted successfully.");
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+    
+    public void stop() {
+    	studentInformationTracker.close();
+    }
+
+}

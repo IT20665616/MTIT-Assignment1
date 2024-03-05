@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;my.osgi.tryout.subscriber.Activator&apos; to &apos;ServiceActivator&apos;&#x0A;- Original project: &apos;my.osgi.tryout.subscriber&apos;&#x0A;- Original element: &apos;my.osgi.tryout.subscriber.Activator&apos;&#x0A;- Renamed element: &apos;my.osgi.tryout.subscriber.ServiceActivator&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Activator&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;my.osgi.tryout.subscriber{Activator.java[Activator" matchStrategy="1" name="ServiceActivator" qualified="false" references="true" similarDeclarations="false" stamp="1709545044626" textual="false" version="1.0"/>
+</session>

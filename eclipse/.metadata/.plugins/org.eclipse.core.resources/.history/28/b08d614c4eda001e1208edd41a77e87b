@@ -1,0 +1,79 @@
+package osgi_studentinformationconsumer;
+
+import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
+
+public class StudentInterfaceImpl implements StudentInterface{
+	
+	private BundleContext bundleContext;
+    private ServiceTracker<StudentService, StudentService> studentServiceTracker;
+
+    public StudentInterfaceImpl(BundleContext bundleContext) {
+        this.bundleContext = bundleContext;
+    }
+
+    public void start() {
+        studentServiceTracker = new ServiceTracker<>(bundleContext, StudentService.class, null);
+        studentServiceTracker.open();
+    }
+
+    public void stop() {
+        studentServiceTracker.close();
+    }
+
+    private StudentService getStudentService() {
+        return studentServiceTracker.getService();
+    }
+
+    @Override
+    public void displayStudentInfo(String id) {
+        StudentService studentService = getStudentService();
+        if (studentService != null) {
+            Student student = studentService.getStudentById(id);
+            if (student != null) {
+                System.out.println("Student Info:");
+                System.out.println("Name: " + student.getName());
+                System.out.println("ID: " + student.getId());
+                System.out.println("Department: " + student.getDepartment());
+            } else {
+                System.out.println("Student not found.");
+            }
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+
+    @Override
+    public void addStudent(String name, String id, String department) {
+        StudentService studentService = getStudentService();
+        if (studentService != null) {
+            studentService.addStudent(name, id, department);
+            System.out.println("Student added successfully.");
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+
+    @Override
+    public void updateStudent(String id, String name, String department) {
+        StudentService studentService = getStudentService();
+        if (studentService != null) {
+            studentService.updateStudent(id, name, department);
+            System.out.println("Student updated successfully.");
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+
+    @Override
+    public void deleteStudent(String id) {
+        StudentService studentService = getStudentService();
+        if (studentService != null) {
+            studentService.deleteStudent(id);
+            System.out.println("Student deleted successfully.");
+        } else {
+            System.out.println("Student service is not available.");
+        }
+    }
+
+}

@@ -1,0 +1,22 @@
+package osgi_coursesubscriber;
+
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+
+public class CourseSubscriberActivator implements BundleActivator {
+
+	private static BundleContext context;
+
+	static BundleContext getContext() {
+		return context;
+	}
+
+	public void start(BundleContext bundleContext) throws Exception {
+		CourseSubscriberActivator.context = bundleContext;
+	}
+
+	public void stop(BundleContext bundleContext) throws Exception {
+		CourseSubscriberActivator.context = null;
+	}
+
+}

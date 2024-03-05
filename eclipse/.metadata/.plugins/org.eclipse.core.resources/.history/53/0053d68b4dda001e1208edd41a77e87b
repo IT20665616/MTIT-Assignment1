@@ -1,0 +1,5 @@
+package osgi_studentinformationconsumer;
+
+public class StudentInterfaceImpl {
+
+}

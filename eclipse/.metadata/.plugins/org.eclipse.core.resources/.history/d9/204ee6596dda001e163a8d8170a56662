@@ -1,0 +1,47 @@
+package osgi_coursepublisher;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class CoursePublishImpl implements CoursePublish{
+	private Map<String, String[]> courseMap;
+
+    public CoursePublishImpl() {
+        courseMap = new HashMap<>();
+    }
+
+    @Override
+    public void enrollStudent(String courseId, String studentId) {
+        if (courseMap.containsKey(courseId)) {
+            String[] enrolledStudents = courseMap.get(courseId);
+            String[] updatedEnrolledStudents = new String[enrolledStudents.length + 1];
+            System.arraycopy(enrolledStudents, 0, updatedEnrolledStudents, 0, enrolledStudents.length);
+            updatedEnrolledStudents[enrolledStudents.length] = studentId;
+            courseMap.put(courseId, updatedEnrolledStudents);
+        } else {
+            courseMap.put(courseId, new String[]{studentId});
+        }
+    }
+
+    @Override
+    public void removeStudent(String courseId, String studentId) {
+        if (courseMap.containsKey(courseId)) {
+            String[] enrolledStudents = courseMap.get(courseId);
+            for (int i = 0; i < enrolledStudents.length; i++) {
+                if (enrolledStudents[i].equals(studentId)) {
+                    String[] updatedEnrolledStudents = new String[enrolledStudents.length - 1];
+                    System.arraycopy(enrolledStudents, 0, updatedEnrolledStudents, 0, i);
+                    System.arraycopy(enrolledStudents, i + 1, updatedEnrolledStudents, i, enrolledStudents.length - i - 1);
+                    courseMap.put(courseId, updatedEnrolledStudents);
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public String[] getEnrolledStudents(String courseId) {
+        return courseMap.get(courseId);
+    }
+
+}

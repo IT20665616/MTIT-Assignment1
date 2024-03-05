@@ -1,0 +1,5 @@
+package osgi_attendancepublisher;
+
+public class AttendancePublishImpl {
+
+}

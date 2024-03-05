@@ -1,0 +1,91 @@
+package gradingpublisher;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class GradingPublishImpl implements GradingPublish {
+
+    private Map<String, Map<String, Integer>> gradesMap;
+
+    public GradingPublishImpl() {
+        gradesMap = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nChoose an Option:");
+            System.out.println("1. Add Grade");
+            System.out.println("2. Update Grade");
+            System.out.println("3. Remove Grade");
+            System.out.println("4. View Grade");
+            System.out.println("5. Exit");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\nEnter student ID:");
+                    String studentId = scanner.nextLine();
+                    System.out.println("Enter course ID:");
+                    String courseId = scanner.nextLine();
+                    System.out.println("Enter grade:");
+                    int grade = scanner.nextInt();
+                    addGrade(courseId, studentId, grade);
+                    System.out.println("\nGrade Successfully Added !");
+                    break;
+                case 2:
+                    // Update grade logic
+                    break;
+                case 3:
+                    // Remove grade logic
+                    break;
+                case 4:
+                    System.out.println("Enter student ID:");
+                    String viewStudentId = scanner.nextLine();
+                    System.out.println("Enter course ID:");
+                    String viewCourseId = scanner.nextLine();
+                    Integer viewedGrade = getGrade(viewCourseId, viewStudentId);
+                    if (viewedGrade != null) {
+                        System.out.println("Grade for Student " + viewStudentId + " in Course " + viewCourseId + ": " + viewedGrade);
+                    } else {
+                        System.out.println("No grade found for Student " + viewStudentId + " in Course " + viewCourseId);
+                    }
+                    break;
+                case 5:
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    @Override
+    public void addGrade(String courseId, String studentId, int grade) {
+        if (!gradesMap.containsKey(courseId)) {
+            gradesMap.put(courseId, new HashMap<>());
+        }
+        gradesMap.get(courseId).put(studentId, grade);
+    }
+
+    @Override
+    public void updateGrade(String courseId, String studentId, int grade) {
+        // Implement update grade logic
+    }
+
+    @Override
+    public void removeGrade(String courseId, String studentId) {
+        // Implement remove grade logic
+    }
+
+    @Override
+    public Integer getGrade(String courseId, String studentId) {
+        if (gradesMap.containsKey(courseId)) {
+            Map<String, Integer> studentGrades = gradesMap.get(courseId);
+            if (studentGrades.containsKey(studentId)) {
+                return studentGrades.get(studentId);
+            }
+        }
+        return null;
+    }
+}

@@ -1,0 +1,8 @@
+package osgi_coursepublisher;
+
+public interface CoursePublish {
+	void enrollStudent(String courseId, String studentId);
+    void removeStudent(String courseId, String studentId);
+    String[] getEnrolledStudents(String courseId);
+
+}

@@ -1,0 +1,11 @@
+package gradingpublisher;
+
+public interface GradingPublish {
+	void addGrade(String courseId, String studentId, int grade);
+
+	void updateGrade(String courseId, String studentId, int grade);
+
+	void removeGrade(String courseId, String studentId);
+
+	Integer getGrade(String courseId, String studentId);
+}

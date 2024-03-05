@@ -1,0 +1,5 @@
+package osgi_studentinformationpublisher;
+
+public class Student {
+
+}

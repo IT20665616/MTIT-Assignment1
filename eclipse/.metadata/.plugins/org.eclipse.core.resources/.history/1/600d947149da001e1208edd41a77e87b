@@ -1,0 +1,22 @@
+package osgi_coursepublisher;
+
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+
+public class CoursePublisherActivator implements BundleActivator {
+
+	private static BundleContext context;
+
+	static BundleContext getContext() {
+		return context;
+	}
+
+	public void start(BundleContext bundleContext) throws Exception {
+		CoursePublisherActivator.context = bundleContext;
+	}
+
+	public void stop(BundleContext bundleContext) throws Exception {
+		CoursePublisherActivator.context = null;
+	}
+
+}

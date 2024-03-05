@@ -1,0 +1,149 @@
+package osgi_coursepublisher;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CoursePublishImpl implements CoursePublish {
+
+    private Map<String, Course> courseMap;
+
+    public CoursePublishImpl() {
+        courseMap = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        
+        Course courseCC = new Course("01","Clour Computing","IT");
+        Course courseDB = new Course("01","Database Management","IT");
+        Course courseSE = new Course("01","Software Engineering","IT");
+        Course courseN = new Course("01","Networking","IT");
+        Course courseSys = new Course("01","System Engineering","IT");
+        
+        courseMap.put("1", courseCC);
+
+        while (true) {
+            System.out.println("\nChoose an Option:");
+            System.out.println("1. Add new Course to the List");
+            System.out.println("2. Update Existing Course");
+            System.out.println("3. Remove Courses");
+            System.out.println("4. View Course by ID");
+            System.out.println("5. Exit");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\nEnter course name:");
+                    String name = scanner.nextLine();
+                    System.out.println("Enter course ID:");
+                    String id = scanner.nextLine();
+                    System.out.println("Enter course department:");
+                    String department = scanner.nextLine();
+                    addCourse(id, name, department);
+                    System.out.println("\nCourse Successfully Added !");
+                    break;
+                case 2:
+                    System.out.println("Enter course ID:");
+                    String courseId = scanner.nextLine();
+                    Course course = getCourseById(courseId);
+                    if (course != null) {
+                        System.out.println("Course Details:");
+                        System.out.println("Name: " + course.getName());
+                        System.out.println("ID: " + course.getId());
+                        System.out.println("Department: " + course.getDepartment());
+
+                        System.out.println("\nEnter updated course name:");
+                        String updateName = scanner.nextLine();
+                        System.out.println("Enter updated course department:");
+                        String updateDept = scanner.nextLine();
+                        updateCourse(courseId, updateName, updateDept);
+                        System.out.println("\nCourse Successfully Updated !");
+                    } else {
+                        System.out.println("Course with ID " + courseId + " not found.");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Enter course ID to delete:");
+                    String deleteId = scanner.nextLine();
+                    deleteCourse(deleteId);
+                    System.out.println("\nCourse Successfully Deleted !");
+                    break;
+                case 4:
+                    System.out.println("Enter course ID:");
+                    String viewId = scanner.nextLine();
+                    Course viewedCourse = getCourseById(viewId);
+                    if (viewedCourse != null) {
+                        System.out.println("Course Details:");
+                        System.out.println("Name: " + viewedCourse.getName());
+                        System.out.println("ID: " + viewedCourse.getId());
+                        System.out.println("Department: " + viewedCourse.getDepartment());
+                    } else {
+                        System.out.println("Course with ID " + viewId + " not found.");
+                    }
+                    break;
+                case 5:
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    @Override
+    public void addCourse(String id, String name, String department) {
+    	Course course = new Course(name, id, department);
+        courseMap.put(id, course);
+    }
+
+    @Override
+    public void updateCourse(String id, String name, String department) {
+        if (courseMap.containsKey(id)) {
+        	Course course = new Course(name, id, department);
+            courseMap.put(id, course);
+        }
+    }
+
+    @Override
+    public void deleteCourse(String id) {
+        courseMap.remove(id);
+    }
+
+    @Override
+    public Course getCourseById(String id) {
+        return courseMap.get(id);
+    }
+
+//    @Override
+//    public void enrollStudent(String courseId, String studentId) {
+//        if (courseMap.containsKey(courseId)) {
+//            String[] enrolledStudents = courseMap.get(courseId);
+//            String[] updatedEnrolledStudents = new String[enrolledStudents.length + 1];
+//            System.arraycopy(enrolledStudents, 0, updatedEnrolledStudents, 0, enrolledStudents.length);
+//            updatedEnrolledStudents[enrolledStudents.length] = studentId;
+//            courseMap.put(courseId, updatedEnrolledStudents);
+//        } else {
+//            courseMap.put(courseId, new String[]{studentId});
+//        }
+//    }
+//
+//    @Override
+//    public void removeStudent(String courseId, String studentId) {
+//        if (courseMap.containsKey(courseId)) {
+//            String[] enrolledStudents = courseMap.get(courseId);
+//            for (int i = 0; i < enrolledStudents.length; i++) {
+//                if (enrolledStudents[i].equals(studentId)) {
+//                    String[] updatedEnrolledStudents = new String[enrolledStudents.length - 1];
+//                    System.arraycopy(enrolledStudents, 0, updatedEnrolledStudents, 0, i);
+//                    System.arraycopy(enrolledStudents, i + 1, updatedEnrolledStudents, i, enrolledStudents.length - i - 1);
+//                    courseMap.put(courseId, updatedEnrolledStudents);
+//                    return;
+//                }
+//            }
+//        }
+//    }
+
+//    @Override
+//    public String[] getEnrolledStudents(String courseId) {
+//        return courseMap.get(courseId);
+//    }
+}

@@ -1,0 +1,5 @@
+package osgi_coursepublisher;
+
+public class CoursePublishImpl {
+
+}

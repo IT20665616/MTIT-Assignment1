@@ -1,0 +1,29 @@
+package osgi_attendancepublisher;
+
+public class AttendancePublishImpl implements AttendancePublish{
+
+	@Override
+	public void addAttendance(String caurseId, String StudentId, String attendance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateAttendance(String caurseId, String StudentId, String attendance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAttendance(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Attendance getAttendanceById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

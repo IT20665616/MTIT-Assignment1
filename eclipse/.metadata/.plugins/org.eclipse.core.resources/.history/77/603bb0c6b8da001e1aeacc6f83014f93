@@ -1,0 +1,34 @@
+package osgi_attendancepublisher;
+
+import java.util.Map;
+
+
+public class AttendancePublishImpl implements AttendancePublish{
+	
+	private Map<String, Attendance> attMap;
+
+	@Override
+	public void addAttendance(String caurseId, String StudentId, String attendance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateAttendance(String caurseId, String StudentId, String attendance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAttendance(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Attendance getAttendanceById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,109 @@
+package osgi_attendancepublisher;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+
+public class AttendancePublishImpl implements AttendancePublish{
+	
+	private Map<String, Attendance> attMap;
+	
+	public AttendancePublishImpl() {
+        attMap = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nSelect an option:");
+            System.out.println("1. Add Attendance");
+            System.out.println("2. Update Attendance");
+            System.out.println("3. Delete Attendance");
+            System.out.println("4. View Attendance by Attendance ID");
+            System.out.println("5. Exit");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\nEnter student name:");
+                    String name = scanner.nextLine();
+                    System.out.println("Enter Course ID:");
+                    String id = scanner.nextLine();
+                    System.out.println("Enter Attendance ID:");
+                    String department = scanner.nextLine();
+                    addAttendance(name, id, department);
+                    System.out.println("\nAttendance Successfully Added !");
+                    break;
+                case 2:
+                    System.out.println("Enter student ID:");
+                    String getId = scanner.nextLine();
+                    Attendance att = getAttendanceById(getId);
+                    if (att != null) {
+                        System.out.println("Attendance Details:");
+                        System.out.println("Course ID: " + att.getAttendance());
+                        System.out.println("Student ID: " + att.getAttendance());
+                        System.out.println("Attendance: " + att.getAttendance());
+                        
+                        System.out.println("\nEnter updated Course ID:");
+                        String updateName = scanner.nextLine();
+                        System.out.println("Enter updated student ID:");
+                        String updateDept = scanner.nextLine();
+                        updateAttendance(getId, updateName, updateDept);
+                        System.out.println("\nAttendance Successfully Updated !");
+                    } else {
+                        System.out.println("Attendance with ID " + getId + " not found.");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Enter student ID to delete:");
+                    String deleteId = scanner.nextLine();
+                    deleteAttendance(deleteId);
+                    System.out.println("\nAttendance Successfully Deleted !");
+                    break;
+                case 4:
+                    System.out.println("Enter student ID:");
+                    String studentId = scanner.nextLine();
+                    Attendance attendance = getAttendanceById(studentId);
+                    if (attendance != null) {
+                        System.out.println("Attendance Details:");
+                        System.out.println("Name: " + attendance.getAttendance());
+                        System.out.println("ID: " + attendance.getAttendance());
+                        System.out.println("Department: " + attendance.getAttendance());
+                    } else {
+                        System.out.println("Attendance with ID " + studentId + " not found.");
+                    }
+                    break;
+                case 5:
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+	@Override
+	public void addAttendance(String caurseId, String StudentID, String attendance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateAttendance(String caurseId, String StudentId, String attendance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAttendance(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Attendance getAttendanceById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -6,6 +6,14 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/Users/hansipabasara/Desktop/eclipse"/>
+			<item value="/Users/hansipabasara/Downloads/Test1 8"/>
+			<item value="/Users/hansipabasara/Downloads/Test1 7"/>
+			<item value="/Users/hansipabasara/Downloads/Test1 6"/>
+			<item value="/Users/hansipabasara/Downloads/Test1 3"/>
+			<item value="/Users/hansipabasara/Downloads/Test1 5"/>
+			<item value="/Users/hansipabasara/Downloads/Test1 2"/>
+			<item value="/Users/hansipabasara/Downloads/Test1"/>
 			<item value="/Users/hansipabasara/Downloads/CSSE_WE_15 2/OSGI_StudentConsumer"/>
 			<item value="/Users/hansipabasara/Downloads/CSSE_WE_15 2/OSGI_StudentPublisher"/>
 			<item value="/Users/hansipabasara/Downloads/CSSE_WE_15/OSGI_StudentConsumer"/>
@@ -16,5 +24,11 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.internal.views.markers.FiltersConfigurationDialog">
+	</section>
+	<section name="CleanDialogSettings">
+		<item key="TOGGLE_SELECTED" value="false"/>
+		<item key="DIALOG_WIDTH" value="540"/>
+		<item key="DIALOG_HEIGHT" value="367"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
 </section>

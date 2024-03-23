@@ -14,7 +14,7 @@ public class GradingSubscriberActivator implements BundleActivator {
 		serviceReference = context.getServiceReference(GradingPublish.class.getName());
 		GradingPublish gradingPublish = (GradingPublish) context.getService(serviceReference);
 		
-//		servicePublish.chooseAnOption();
+		gradingPublish.selectOption();
 	}
 
 	public void stop(BundleContext context) throws Exception {

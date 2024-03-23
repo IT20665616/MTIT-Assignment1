@@ -7,19 +7,27 @@ import osgi_coursepublisher.CoursePublish;
 
 public class CourseSubscriberActivator implements BundleActivator {
 
-	ServiceReference serviceReference;
-	
-	public void start(BundleContext context) throws Exception {
-		System.out.println("Course Subscriber Start");
-		serviceReference = context.getServiceReference(CoursePublish.class.getName());
-		CoursePublish coursePublish = (CoursePublish) context.getService(serviceReference);
-		
-//		servicePublish.chooseAnOption();
-	}
+    ServiceReference<CoursePublish> serviceReference;
 
-	public void stop(BundleContext context) throws Exception {
-		System.out.println("Course Subscriber stop");
-		context.ungetService(serviceReference);
-	}
+    public void start(BundleContext context) throws Exception {
+        System.out.println("Course Subscriber Start");
+        // Get service reference
+        serviceReference = context.getServiceReference(CoursePublish.class);
+        if (serviceReference != null) {
+            // Get service object
+            CoursePublish coursePublish = context.getService(serviceReference);
+            // Use the service...
+            if (coursePublish != null) {
+                coursePublish.chooseOption();
+            }
+        }
+    }
 
+    public void stop(BundleContext context) throws Exception {
+        System.out.println("Course Subscriber stop");
+        // Unget the service
+        if (serviceReference != null) {
+            context.ungetService(serviceReference);
+        }
+    }
 }

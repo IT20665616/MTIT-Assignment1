@@ -6,5 +6,6 @@ public interface AttendancePublish {
 	void updateAttendance(String caurseId, String StudentId, String attendance );
 	void deleteAttendance(String id);
     Attendance getAttendanceById(String id);
+    void selectOption();
 
 }

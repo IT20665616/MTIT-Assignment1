@@ -1,0 +1,22 @@
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
+
+import osgi_studentinformationpublisher.StudentInfoPublish;
+import osgi_studentinformationpublisher.StudentInfoPublishImpl;
+
+public class StudentPublisherActivator implements BundleActivator {
+
+    ServiceRegistration<StudentInfoPublish> serviceRegistration;
+
+    public void start(BundleContext context) throws Exception {
+        System.out.println("Student Publisher Start");
+        StudentInfoPublish studentInfoPublish = new StudentInfoPublishImpl();
+        serviceRegistration = context.registerService(StudentInfoPublish.class, studentInfoPublish, null);
+    }
+
+    public void stop(BundleContext context) throws Exception {
+        System.out.println("Student Publisher stopped");
+        serviceRegistration.unregister();
+    }
+}

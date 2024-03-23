@@ -1,0 +1,47 @@
+package osgi_coursepublisher;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class CoursePublishImpl implements CoursePublish {
+
+    private Map<String, Course> courseMap;
+
+    public CoursePublishImpl() {
+        
+    }
+    
+
+    @Override
+    public void addCourse(String id, String name, String department) {
+    	Course course = new Course(name, id, department);
+        courseMap.put(id, course);
+    }
+
+    @Override
+    public void updateCourse(String id, String name, String department) {
+        if (courseMap.containsKey(id)) {
+        	Course course = new Course(name, id, department);
+            courseMap.put(id, course);
+        }
+    }
+
+    @Override
+    public void deleteCourse(String id) {
+        courseMap.remove(id);
+    }
+
+    @Override
+    public Course getCourseById(String id) {
+        return courseMap.get(id);
+    }
+
+
+	@Override
+	public void chooseOption() {
+		// TODO Auto-generated method stub
+
+		
+	}
+}

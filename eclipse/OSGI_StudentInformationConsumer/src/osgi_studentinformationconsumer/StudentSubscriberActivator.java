@@ -5,22 +5,29 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import osgi_studentinformationpublisher.StudentInfoPublish;
 
-
 public class StudentSubscriberActivator implements BundleActivator {
 
-	ServiceReference serviceReference;
+    ServiceReference<StudentInfoPublish> serviceReference;
 
-	public void start(BundleContext context) throws Exception {
-		System.out.println("Student Consumer Start");
-		serviceReference = context.getServiceReference(StudentInfoPublish.class.getName());
-		StudentInfoPublish studentInfoPublish = (StudentInfoPublish) context.getService(serviceReference);
-		
-		studentInfoPublish.addStudent("Nimal","01","Computing");
-	}
+    public void start(BundleContext context) throws Exception {
+        System.out.println("Student Consumer Start");
+        // Get service reference
+        serviceReference = context.getServiceReference(StudentInfoPublish.class);
+        if (serviceReference != null) {
+            // Get service object
+            StudentInfoPublish studentInfoPublish = context.getService(serviceReference);
+            // Use the service...
+            if (studentInfoPublish != null) {
+                studentInfoPublish.chooseOption();
+            }
+        }
+    }
 
-	public void stop(BundleContext context) throws Exception {
-		System.out.println("Student Consumer stop");
-		context.ungetService(serviceReference);
-	}
-
+    public void stop(BundleContext context) throws Exception {
+        System.out.println("Student Consumer stop");
+        // Unget the service
+        if (serviceReference != null) {
+            context.ungetService(serviceReference);
+        }
+    }
 }

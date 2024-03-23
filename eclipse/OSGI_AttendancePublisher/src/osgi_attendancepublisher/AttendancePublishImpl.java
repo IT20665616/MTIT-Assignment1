@@ -9,7 +9,39 @@ public class AttendancePublishImpl implements AttendancePublish {
     private Map<String, Attendance> attMap;
 
     public AttendancePublishImpl() {
-        attMap = new HashMap<>();
+        
+    }
+
+    @Override
+    public void addAttendance(String courseId, String studentId, String attendance) {
+        Attendance att = new Attendance(courseId, studentId, attendance);
+        attMap.put(studentId, att);
+    }
+
+    @Override
+    public void updateAttendance(String id, String courseId, String studentId) {
+        if (attMap.containsKey(id)) {
+            Attendance att = attMap.get(id);
+            att.setCourseID(courseId);
+            att.setStudentId(studentId);
+            attMap.put(id, att);
+        }
+    }
+
+    @Override
+    public void deleteAttendance(String id) {
+        attMap.remove(id);
+    }
+
+    @Override
+    public Attendance getAttendanceById(String id) {
+        return attMap.get(id);
+    }
+
+	@Override
+	public void selectOption() {
+		// TODO Auto-generated method stub
+		attMap = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -79,31 +111,6 @@ public class AttendancePublishImpl implements AttendancePublish {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    }
-
-    @Override
-    public void addAttendance(String courseId, String studentId, String attendance) {
-        Attendance att = new Attendance(courseId, studentId, attendance);
-        attMap.put(studentId, att);
-    }
-
-    @Override
-    public void updateAttendance(String id, String courseId, String studentId) {
-        if (attMap.containsKey(id)) {
-            Attendance att = attMap.get(id);
-            att.setCourseID(courseId);
-            att.setStudentId(studentId);
-            attMap.put(id, att);
-        }
-    }
-
-    @Override
-    public void deleteAttendance(String id) {
-        attMap.remove(id);
-    }
-
-    @Override
-    public Attendance getAttendanceById(String id) {
-        return attMap.get(id);
-    }
+		
+	}
 }

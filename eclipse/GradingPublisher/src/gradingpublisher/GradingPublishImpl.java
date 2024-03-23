@@ -9,7 +9,67 @@ public class GradingPublishImpl implements GradingPublish {
     private Map<String, Map<String, String>> gradesMap;
 
     public GradingPublishImpl() {
-        gradesMap = new HashMap<>();
+        
+    }
+
+    @Override
+    public void addGrade(String courseId, String studentId, String grade, String comments) {
+        if (!gradesMap.containsKey(courseId)) {
+            gradesMap.put(courseId, new HashMap<>());
+        }
+        gradesMap.get(courseId).put(studentId, grade);
+    }
+
+    @Override
+    public void updateGrade(String courseId, String studentId, String grade, String comments) {
+        if (gradesMap.containsKey(courseId)) {
+            Map<String, String> studentGrades = gradesMap.get(courseId);
+            if (studentGrades.containsKey(studentId)) {
+                // Update the grade and comments
+                studentGrades.put(studentId, grade);
+                // You may want to update comments too, depending on your requirements
+                // If you want to update comments, uncomment the following line
+                // studentGrades.put(studentId, comments);
+                System.out.println("Grade for Student " + studentId + " in Course " + courseId + " updated successfully!");
+            } else {
+                System.out.println("No grade found for Student " + studentId + " in Course " + courseId);
+            }
+        } else {
+            System.out.println("No grades found for Course " + courseId);
+        }
+    }
+
+    @Override
+    public void removeGrade(String courseId, String studentId) {
+        if (gradesMap.containsKey(courseId)) {
+            Map<String, String> studentGrades = gradesMap.get(courseId);
+            if (studentGrades.containsKey(studentId)) {
+                // Remove the grade entry for the specified studentId
+                studentGrades.remove(studentId);
+                System.out.println("Grade for Student " + studentId + " in Course " + courseId + " removed successfully!");
+            } else {
+                System.out.println("No grade found for Student " + studentId + " in Course " + courseId);
+            }
+        } else {
+            System.out.println("No grades found for Course " + courseId);
+        }
+    }
+
+    @Override
+    public String getGrade(String courseId, String studentId) {
+        if (gradesMap.containsKey(courseId)) {
+            Map<String, String> studentGrades = gradesMap.get(courseId);
+            if (studentGrades.containsKey(studentId)) {
+                return studentGrades.get(studentId);
+            }
+        }
+        return null;
+    }
+
+	@Override
+	public void selectOption() {
+		// TODO Auto-generated method stub
+		gradesMap = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -72,59 +132,6 @@ public class GradingPublishImpl implements GradingPublish {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    }
-
-    @Override
-    public void addGrade(String courseId, String studentId, String grade, String comments) {
-        if (!gradesMap.containsKey(courseId)) {
-            gradesMap.put(courseId, new HashMap<>());
-        }
-        gradesMap.get(courseId).put(studentId, grade);
-    }
-
-    @Override
-    public void updateGrade(String courseId, String studentId, String grade, String comments) {
-        if (gradesMap.containsKey(courseId)) {
-            Map<String, String> studentGrades = gradesMap.get(courseId);
-            if (studentGrades.containsKey(studentId)) {
-                // Update the grade and comments
-                studentGrades.put(studentId, grade);
-                // You may want to update comments too, depending on your requirements
-                // If you want to update comments, uncomment the following line
-                // studentGrades.put(studentId, comments);
-                System.out.println("Grade for Student " + studentId + " in Course " + courseId + " updated successfully!");
-            } else {
-                System.out.println("No grade found for Student " + studentId + " in Course " + courseId);
-            }
-        } else {
-            System.out.println("No grades found for Course " + courseId);
-        }
-    }
-
-    @Override
-    public void removeGrade(String courseId, String studentId) {
-        if (gradesMap.containsKey(courseId)) {
-            Map<String, String> studentGrades = gradesMap.get(courseId);
-            if (studentGrades.containsKey(studentId)) {
-                // Remove the grade entry for the specified studentId
-                studentGrades.remove(studentId);
-                System.out.println("Grade for Student " + studentId + " in Course " + courseId + " removed successfully!");
-            } else {
-                System.out.println("No grade found for Student " + studentId + " in Course " + courseId);
-            }
-        } else {
-            System.out.println("No grades found for Course " + courseId);
-        }
-    }
-
-    @Override
-    public String getGrade(String courseId, String studentId) {
-        if (gradesMap.containsKey(courseId)) {
-            Map<String, String> studentGrades = gradesMap.get(courseId);
-            if (studentGrades.containsKey(studentId)) {
-                return studentGrades.get(studentId);
-            }
-        }
-        return null;
-    }
+		
+	}
 }

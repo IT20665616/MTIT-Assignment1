@@ -9,7 +9,38 @@ public class CoursePublishImpl implements CoursePublish {
     private Map<String, Course> courseMap;
 
     public CoursePublishImpl() {
-        courseMap = new HashMap<>();
+    }
+    
+
+    @Override
+    public void addCourse(String id, String name, String department) {
+    	Course course = new Course(name, id, department);
+        courseMap.put(id, course);
+    }
+
+    @Override
+    public void updateCourse(String id, String name, String department) {
+        if (courseMap.containsKey(id)) {
+        	Course course = new Course(name, id, department);
+            courseMap.put(id, course);
+        }
+    }
+
+    @Override
+    public void deleteCourse(String id) {
+        courseMap.remove(id);
+    }
+
+    @Override
+    public Course getCourseById(String id) {
+        return courseMap.get(id);
+    }
+
+
+	@Override
+	public void chooseOption() {
+		// TODO Auto-generated method stub
+		courseMap = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         
         Course courseCC = new Course("1","Clour Computing","IT");
@@ -51,7 +82,7 @@ public class CoursePublishImpl implements CoursePublish {
                     String id = scanner.nextLine();
                     System.out.println("Enter course department:");
                     String department = scanner.nextLine();
-                    addCourse(id, name, department);
+                    
                     System.out.println("\nCourse Successfully Added !");
                     break;
                 case 2:
@@ -100,63 +131,6 @@ public class CoursePublishImpl implements CoursePublish {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    }
-
-    @Override
-    public void addCourse(String id, String name, String department) {
-    	Course course = new Course(name, id, department);
-        courseMap.put(id, course);
-    }
-
-    @Override
-    public void updateCourse(String id, String name, String department) {
-        if (courseMap.containsKey(id)) {
-        	Course course = new Course(name, id, department);
-            courseMap.put(id, course);
-        }
-    }
-
-    @Override
-    public void deleteCourse(String id) {
-        courseMap.remove(id);
-    }
-
-    @Override
-    public Course getCourseById(String id) {
-        return courseMap.get(id);
-    }
-
-//    @Override
-//    public void enrollStudent(String courseId, String studentId) {
-//        if (courseMap.containsKey(courseId)) {
-//            String[] enrolledStudents = courseMap.get(courseId);
-//            String[] updatedEnrolledStudents = new String[enrolledStudents.length + 1];
-//            System.arraycopy(enrolledStudents, 0, updatedEnrolledStudents, 0, enrolledStudents.length);
-//            updatedEnrolledStudents[enrolledStudents.length] = studentId;
-//            courseMap.put(courseId, updatedEnrolledStudents);
-//        } else {
-//            courseMap.put(courseId, new String[]{studentId});
-//        }
-//    }
-//
-//    @Override
-//    public void removeStudent(String courseId, String studentId) {
-//        if (courseMap.containsKey(courseId)) {
-//            String[] enrolledStudents = courseMap.get(courseId);
-//            for (int i = 0; i < enrolledStudents.length; i++) {
-//                if (enrolledStudents[i].equals(studentId)) {
-//                    String[] updatedEnrolledStudents = new String[enrolledStudents.length - 1];
-//                    System.arraycopy(enrolledStudents, 0, updatedEnrolledStudents, 0, i);
-//                    System.arraycopy(enrolledStudents, i + 1, updatedEnrolledStudents, i, enrolledStudents.length - i - 1);
-//                    courseMap.put(courseId, updatedEnrolledStudents);
-//                    return;
-//                }
-//            }
-//        }
-//    }
-
-//    @Override
-//    public String[] getEnrolledStudents(String courseId) {
-//        return courseMap.get(courseId);
-//    }
+		
+	}
 }

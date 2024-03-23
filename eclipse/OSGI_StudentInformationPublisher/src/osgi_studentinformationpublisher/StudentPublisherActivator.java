@@ -12,11 +12,15 @@ public class StudentPublisherActivator implements BundleActivator {
 		System.out.println("Student Publisher Start");
 		StudentInfoPublish studentInfoPublish = new StudentInfoPublishImpl();
 		serviceRegistration = context.registerService(StudentInfoPublish.class.getName(), studentInfoPublish, null);
+		
+//		StudentInfoPublishImpl studentInfoPublishImpl = new StudentInfoPublishImpl();
+//		studentInfoPublishImpl.chooseOption();
 	}
 
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Student Publisher stopped");
 		serviceRegistration.unregister();
 	}
+	
 
 }

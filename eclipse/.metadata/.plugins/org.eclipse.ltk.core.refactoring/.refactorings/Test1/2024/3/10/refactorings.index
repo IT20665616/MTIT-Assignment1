@@ -1,0 +1,20 @@
+1709991740971	Copy compilation unit
+1709992740583	Extract superclass 'DBUtils'
+1709992798294	Extract superclass 'EmployeeData'
+1709993038925	Extract Class...
+1709993087734	Extract Class...
+1709993123475	Delete element
+1709993215563	Extract Class...
+1709993232420	Extract superclass 'DBUtils'
+1710007924061	Delete element
+1710007966244	Extract Class...
+1710007976387	Move compilation unit
+1710008014735	Rename field 'empid'
+1710008024209	Rename field 'empname'
+1710008032530	Rename field 'basic_sal'
+1710008043656	Rename field 'ot_hrs'
+1710008099648	Extract Class...
+1710008116626	Delete element
+1710008235853	Rename local variable 'p'
+1710008477615	Extract constant 'OT_RATE'
+1710008549436	Extract constant 'TAX_RATE'

@@ -1,0 +1,26 @@
+package osgi_studentinformationconsumer;
+
+import org.osgi.framework.BundleActivator;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import osgi_studentinformationpublisher.StudentInfoPublish;
+
+
+public class StudentSubscriberActivator implements BundleActivator {
+
+	ServiceReference serviceReference;
+
+	public void start(BundleContext context) throws Exception {
+		System.out.println("Student Consumer Start");
+		serviceReference = context.getServiceReference(StudentInfoPublish.class.getName());
+		StudentInfoPublish studentInfoPublish = (StudentInfoPublish) context.getService(serviceReference);
+		
+//		studentInfoPublish.chooseOption();
+	}
+
+	public void stop(BundleContext context) throws Exception {
+		System.out.println("Student Consumer stop");
+		context.ungetService(serviceReference);
+	}
+
+}

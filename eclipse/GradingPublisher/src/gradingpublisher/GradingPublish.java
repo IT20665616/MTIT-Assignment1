@@ -8,4 +8,6 @@ public interface GradingPublish {
 	void removeGrade(String courseId, String studentId);
 
 	String getGrade(String courseId, String studentId);
+	
+	void selectOption();
 }

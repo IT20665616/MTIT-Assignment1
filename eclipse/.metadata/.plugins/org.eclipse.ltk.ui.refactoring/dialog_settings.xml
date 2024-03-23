@@ -9,4 +9,22 @@
 		<item key="DIALOG_HEIGHT" value="477"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item key="CREATE_GETTER_SETTER" value="true"/>
+		<item key="CREATE_TOPLEVEL" value="true"/>
+		<item key="CreateGetters" value="false"/>
+		<item key="CreateSetters" value="false"/>
+		<item key="CreateTopLevel" value="true"/>
+		<item key="moveWizard.updateQualifiedNames" value="false"/>
+		<item key="patterns" value="*"/>
+		<item key="qualifyReferences" value="false"/>
+	</section>
+	<section name="RefactoringWizard.Extract Superclass">
+		<item key="width" value="612"/>
+		<item key="height" value="400"/>
+	</section>
+	<section name="RefactoringWizard.Pull Up">
+		<item key="width" value="612"/>
+		<item key="height" value="400"/>
+	</section>
 </section>

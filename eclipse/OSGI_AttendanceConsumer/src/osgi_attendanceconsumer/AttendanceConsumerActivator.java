@@ -14,6 +14,10 @@ public class AttendanceConsumerActivator implements BundleActivator {
 		serviceReference = context.getServiceReference(AttendancePublish.class.getName());
 		AttendancePublish attendancePublish = (AttendancePublish) context.getService(serviceReference);
 		
+		if (attendancePublish != null) {
+			attendancePublish.selectOption();
+        }
+		
 	}
 
 	public void stop(BundleContext context) throws Exception {

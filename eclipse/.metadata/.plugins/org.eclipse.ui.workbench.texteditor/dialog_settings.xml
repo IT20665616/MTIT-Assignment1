@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="Testing"/>
 		<list key="findhistory">
+			<item value="testing"/>
 			<item value="StudentInformationPublisher"/>
 			<item value="ServiceSubscriber"/>
 			<item value="ServicePublisher"/>

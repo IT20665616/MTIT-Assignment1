@@ -9,5 +9,6 @@ public interface CoursePublish {
 	void updateCourse(String id, String name, String department);
 	void deleteCourse(String id);
     Course getCourseById(String id);
+    void chooseOption();
 
 }
